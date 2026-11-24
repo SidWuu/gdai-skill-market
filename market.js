@@ -10,7 +10,6 @@ const refresh = document.getElementById("refresh");
 const notice = document.getElementById("notice");
 const dialog = document.getElementById("skill-detail");
 const detailBody = document.getElementById("detail-body");
-const channels = new Map([["stable", "正式版"], ["preview", "预览版"], ["dev", "开发版"]]);
 const skillIcons = new Set(["scan", "receipt", "compare", "chart", "building", "shield", "clipboard"]);
 const iconColors = new Set(["blue", "teal", "violet", "cyan", "amber", "rose", "indigo"]);
 
@@ -43,6 +42,10 @@ function timeLabel(date) {
   const label = node("time", "", date);
   label.dateTime = date;
   return label;
+}
+
+function versionLabel(version) {
+  return `v${version.split(/[-+]/, 1)[0]}`;
 }
 
 function renderFilters() {
@@ -89,10 +92,28 @@ function renderMarket() {
     const meta = node("div", "sc-card-meta");
     const date = timeLabel(skill.releasedOn);
     date.className = "sc-card-date";
-    meta.append(node("span", "sc-card-version", `v${skill.version}`), node("span", skill.channel === "stable" ? "sc-badge success" : "sc-badge", channels.get(skill.channel)), date);
+    meta.append(node("span", "sc-card-version", versionLabel(skill.version)), date);
     const footer = node("footer", "");
     footer.append(link);
-    if (skill.demo) footer.append(node("span", "card-demo", "1 分钟演示"));
+    if (skill.demo) {
+      const playback = node("a", "card-demo", "1 分钟演示");
+      playback.href = link.hash;
+      playback.setAttribute("aria-label", `播放${skill.name}的1分钟演示`);
+      playback.addEventListener("click", (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        history.pushState(null, "", playback.hash);
+        const player = syncDetail();
+        player?.play().catch((error) => {
+          if (error.name === "AbortError" || !dialog.open || !player.isConnected) return;
+          const hint = node("p", "video-playback-hint", "请点击播放器播放，或直接打开视频。");
+          hint.setAttribute("role", "status");
+          player.after(hint);
+          player.addEventListener("play", () => hint.remove(), { once: true });
+        });
+      });
+      footer.append(playback);
+    }
     body.append(header, node("p", "sc-card-description", skill.tagline), meta);
     card.append(body, footer);
     return card;
@@ -157,7 +178,7 @@ function syncDetail() {
     heading.append(node("p", "card-category", skill.category), title);
     header.append(skillIcon(skill), heading);
     const meta = node("div", "detail-meta");
-    meta.append(node("span", "channel", channels.get(skill.channel)), node("span", "version", `v${skill.version}`), timeLabel(skill.releasedOn));
+    meta.append(node("span", "version", versionLabel(skill.version)), timeLabel(skill.releasedOn));
     detailBody.replaceChildren(header, meta, node("p", "detail-description", skill.description));
     if (skill.demo) detailBody.append(demoVideo(skill));
     if (skill.example) detailBody.append(demo(skill.example));
@@ -168,6 +189,7 @@ function syncDetail() {
     detailTrigger = document.activeElement;
     dialog.showModal();
   }
+  return detailBody.querySelector("video");
 }
 
 async function loadCatalog() {

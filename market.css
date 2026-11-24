@@ -118,7 +118,7 @@ button, a { outline-offset: 3px; }
 .sc-skill-card { min-width: 0; min-height: 166px; }
 .sc-skill-card:focus-within { border-color: var(--primary); }
 .sc-card-heading h2 { font-size: 15px; overflow-wrap: anywhere; }
-.sc-card-heading > div > span, .sc-card-date, .sc-card-version, .sc-badge { font-size: 11px; }
+.sc-card-heading > div > span, .sc-card-date, .sc-card-version { font-size: 11px; }
 .sc-card-description { font-size: 13px; }
 .sc-card-meta { flex-wrap: wrap; }
 .sc-skill-card footer { min-height: 36px; }
@@ -126,7 +126,8 @@ button, a { outline-offset: 3px; }
 .sc-card-detail::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius-card); }
 .sc-card-detail:focus-visible { outline: none; }
 .sc-card-detail:focus-visible::after { outline: 2px solid var(--primary); outline-offset: 2px; }
-.card-demo { color: var(--primary); font-size: 12px; }
+.card-demo { position: relative; z-index: 1; color: var(--primary); font-size: 12px; }
+.card-demo:hover { text-decoration: underline; text-underline-offset: 2px; }
 
 .secondary {
   border: 1px solid var(--border);
@@ -157,11 +158,11 @@ body:has(dialog[open]) { overflow: hidden; }
 .detail-title { margin-right: 30px; font-size: clamp(17px, 4vw, 22px); line-height: 1.45; overflow-wrap: anywhere; }
 .detail-meta { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .detail-meta, .card-category { font-size: 12px; color: var(--text-secondary); }
-.detail-meta .channel { padding: 2px 6px; border-radius: 5px; background: var(--surface-secondary); }
 .detail-description { margin-top: 12px; }
 .example { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
 .video-demo { margin-top: 18px; }
 .demo-player { display: block; width: 100%; aspect-ratio: 16 / 9; margin-top: 8px; border-radius: var(--radius-control); background: #202939; }
+.video-playback-hint { margin-top: 6px; color: var(--text-secondary); font-size: 12px; }
 .video-direct { display: inline-block; margin-top: 5px; color: var(--primary); font-size: 12px; }
 .video-direct:hover { text-decoration: underline; }
 .example-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }

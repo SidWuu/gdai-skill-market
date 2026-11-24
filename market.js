@@ -92,6 +92,7 @@ function renderMarket() {
     meta.append(node("span", "sc-card-version", `v${skill.version}`), node("span", skill.channel === "stable" ? "sc-badge success" : "sc-badge", channels.get(skill.channel)), date);
     const footer = node("footer", "");
     footer.append(link);
+    if (skill.demo) footer.append(node("span", "card-demo", "1 分钟演示"));
     body.append(header, node("p", "sc-card-description", skill.tagline), meta);
     card.append(body, footer);
     return card;
@@ -123,6 +124,24 @@ function demo(example) {
   return section;
 }
 
+function demoVideo(skill) {
+  const section = node("section", "video-demo");
+  const heading = node("div", "example-heading");
+  heading.append(node("h3", "", "一分钟演示"), node("span", "example-label", "合成示例"));
+  const recording = `./demo-${encodeURIComponent(skill.id)}`;
+  const player = node("video", "demo-player");
+  player.src = `${recording}.mp4`;
+  player.poster = `${recording}.jpg`;
+  player.controls = true;
+  player.preload = "none";
+  player.playsInline = true;
+  player.setAttribute("aria-label", `${skill.name}一分钟演示`);
+  const direct = node("a", "video-direct", "直接打开视频");
+  direct.href = player.src;
+  section.append(heading, player, direct);
+  return section;
+}
+
 function syncDetail() {
   if (!location.hash.startsWith("#skill/")) {
     if (dialog.open) dialog.close();
@@ -140,6 +159,7 @@ function syncDetail() {
     const meta = node("div", "detail-meta");
     meta.append(node("span", "channel", channels.get(skill.channel)), node("span", "version", `v${skill.version}`), timeLabel(skill.releasedOn));
     detailBody.replaceChildren(header, meta, node("p", "detail-description", skill.description));
+    if (skill.demo) detailBody.append(demoVideo(skill));
     if (skill.example) detailBody.append(demo(skill.example));
   } else {
     detailBody.replaceChildren(title, node("p", "detail-description", "请返回技能目录查看当前已发布的展示内容。"));
@@ -213,6 +233,7 @@ dialog.addEventListener("click", (event) => {
 });
 dialog.addEventListener("close", () => {
   if (dialog.open) return;
+  detailBody.querySelector("video")?.pause();
   if (location.hash.startsWith("#skill/")) history.replaceState(null, "", "#market");
   if (detailTrigger instanceof HTMLElement && detailTrigger !== document.body && detailTrigger.isConnected) {
     detailTrigger.focus();

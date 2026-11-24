@@ -126,6 +126,7 @@ button, a { outline-offset: 3px; }
 .sc-card-detail::after { content: ""; position: absolute; inset: 0; border-radius: var(--radius-card); }
 .sc-card-detail:focus-visible { outline: none; }
 .sc-card-detail:focus-visible::after { outline: 2px solid var(--primary); outline-offset: 2px; }
+.card-demo { color: var(--primary); font-size: 12px; }
 
 .secondary {
   border: 1px solid var(--border);
@@ -148,6 +149,7 @@ dialog {
   box-shadow: 0 16px 64px #20293930;
 }
 dialog::backdrop { background: #20293968; }
+dialog:has(.video-demo) { width: min(860px, 100% - 32px); }
 body:has(dialog[open]) { overflow: hidden; }
 .dialog-inner { position: relative; padding: clamp(16px, 4vw, 24px); }
 .close { position: absolute; right: 12px; top: 12px; }
@@ -158,6 +160,10 @@ body:has(dialog[open]) { overflow: hidden; }
 .detail-meta .channel { padding: 2px 6px; border-radius: 5px; background: var(--surface-secondary); }
 .detail-description { margin-top: 12px; }
 .example { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
+.video-demo { margin-top: 18px; }
+.demo-player { display: block; width: 100%; aspect-ratio: 16 / 9; margin-top: 8px; border-radius: var(--radius-control); background: #202939; }
+.video-direct { display: inline-block; margin-top: 5px; color: var(--primary); font-size: 12px; }
+.video-direct:hover { text-decoration: underline; }
 .example-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
 .example-heading h3 { font-size: 15px; font-weight: 600; }
 .example-label { color: var(--primary); white-space: nowrap; font-size: 12px; }

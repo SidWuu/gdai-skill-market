@@ -9,74 +9,59 @@
     <link rel="icon" href="./app-icon.png" type="image/png">
     <link rel="stylesheet" href="./tokens.css">
     <link rel="stylesheet" href="./marketplace.css">
-    <link rel="stylesheet" href="./market.css">
-    <script src="./market.js" defer></script>
+    <link rel="stylesheet" href="./market.css?v=2">
+    <script src="./market.js?v=2" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#market">跳到技能目录</a>
-    <aside class="web-sidebar">
-      <a class="web-brand" href="#market" aria-label="GDAI-Skill-Center 技能市场">
-        <img src="./app-icon.png" width="32" height="32" alt="">
-        <span><strong>GDAI-Skill-Center</strong><small>AI Skill Center</small></span>
-      </a>
-      <nav aria-label="主导航">
-        <a class="web-nav-item" href="#market" aria-current="page">
-          <svg class="icon" aria-hidden="true"><use href="./market-icons.svg#layers"></use></svg>
-          <span>技能市场</span>
-        </a>
-      </nav>
-    </aside>
+    <header class="web-topbar">
+      <div class="web-page-label">
+        <img src="./app-icon.png" width="28" height="28" alt="">
+        <span>高达 AI</span>
+        <strong>技能市场</strong>
+      </div>
+      <div class="web-source">
+        <span id="catalog-date"></span>
+        <button type="button" class="icon-button" id="refresh" aria-label="刷新目录" title="刷新目录">
+          <svg class="icon" aria-hidden="true"><use href="./market-icons.svg#refresh"></use></svg>
+        </button>
+      </div>
+    </header>
 
-    <div class="web-workspace">
-      <header class="web-topbar">
-        <div class="web-page-label">
-          <img class="mobile-brand" src="./app-icon.png" width="28" height="28" alt="">
-          <span>高达 AI</span>
-          <strong>技能市场</strong>
-        </div>
-        <div class="web-source">
-          <span id="catalog-date"></span>
-          <button type="button" class="icon-button" id="refresh" aria-label="刷新目录" title="刷新目录">
-            <svg class="icon" aria-hidden="true"><use href="./market-icons.svg#refresh"></use></svg>
-          </button>
+    <main class="sc-marketplace" id="market">
+      <header class="sc-page-title">
+        <div>
+          <h1>技能市场</h1>
+          <p>查看高达 AI 技能的适用场景、效果示例和发行版本。</p>
         </div>
       </header>
-
-      <main class="sc-marketplace" id="market">
-        <header class="sc-page-title">
-          <div>
-            <h1>技能市场</h1>
-            <p>查看高达 AI 技能的适用场景、效果示例和发行版本。</p>
-          </div>
-        </header>
-        <label class="sc-market-search">
-          <svg class="icon" aria-hidden="true"><use href="./market-icons.svg#search"></use></svg>
-          <span class="sr-only">搜索技能</span>
-          <input id="search" type="search" placeholder="搜索技能名称、业务场景或关键词" autocomplete="off">
-          <kbd id="search-shortcut" aria-hidden="true"></kbd>
-        </label>
-        <div class="sc-market-tabs" id="market-views" role="group" aria-label="技能市场视图">
-          <button type="button" data-view="all" aria-pressed="true">
-            <svg class="icon" aria-hidden="true"><use href="./market-icons.svg#layers"></use></svg> 全部技能
-          </button>
-          <button type="button" data-view="recent" aria-pressed="false">
-            <svg class="icon" aria-hidden="true"><use href="./market-icons.svg#clock"></use></svg> 最近更新
-          </button>
-        </div>
-        <div class="sc-market-filters">
-          <div class="sc-category-list" id="filters" role="group" aria-label="按业务分类"></div>
-        </div>
-        <p class="sc-result-heading" id="result-count" role="status"></p>
-        <p class="notice" id="notice" role="status" hidden></p>
-        <div class="sc-market-grid" id="skill-grid" aria-label="技能列表"></div>
-        <div class="sc-empty-market" id="empty" hidden>
-          <h2 id="empty-title"></h2>
-          <p id="empty-message"></p>
-          <button class="secondary" id="reset" type="button">清除筛选</button>
-        </div>
-        <noscript><p class="notice">请启用 JavaScript 以浏览技能目录。</p></noscript>
-      </main>
-    </div>
+      <label class="sc-market-search">
+        <svg class="icon" aria-hidden="true"><use href="./market-icons.svg#search"></use></svg>
+        <span class="sr-only">搜索技能</span>
+        <input id="search" type="search" placeholder="搜索技能名称、业务场景或关键词" autocomplete="off">
+        <kbd id="search-shortcut" aria-hidden="true"></kbd>
+      </label>
+      <div class="sc-market-tabs" id="market-views" role="group" aria-label="技能市场视图">
+        <button type="button" data-view="all" aria-pressed="true">
+          <svg class="icon" aria-hidden="true"><use href="./market-icons.svg#layers"></use></svg> 全部技能
+        </button>
+        <button type="button" data-view="recent" aria-pressed="false">
+          <svg class="icon" aria-hidden="true"><use href="./market-icons.svg#clock"></use></svg> 最近更新
+        </button>
+      </div>
+      <div class="sc-market-filters">
+        <div class="sc-category-list" id="filters" role="group" aria-label="按业务分类"></div>
+      </div>
+      <p class="sc-result-heading" id="result-count" role="status"></p>
+      <p class="notice" id="notice" role="status" hidden></p>
+      <div class="sc-market-grid" id="skill-grid" aria-label="技能列表"></div>
+      <div class="sc-empty-market" id="empty" hidden>
+        <h2 id="empty-title"></h2>
+        <p id="empty-message"></p>
+        <button class="secondary" id="reset" type="button">清除筛选</button>
+      </div>
+      <noscript><p class="notice">请启用 JavaScript 以浏览技能目录。</p></noscript>
+    </main>
 
     <dialog id="skill-detail" aria-labelledby="detail-title">
       <div class="dialog-inner">

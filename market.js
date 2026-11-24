@@ -150,9 +150,10 @@ function demoVideo(skill) {
   const heading = node("div", "example-heading");
   heading.append(node("h3", "", "一分钟演示"), node("span", "example-label", "合成示例"));
   const recording = `./demo-${encodeURIComponent(skill.id)}`;
+  const revision = skill.demoRevision ? `?v=${encodeURIComponent(skill.demoRevision)}` : "";
   const player = node("video", "demo-player");
-  player.src = `${recording}.mp4`;
-  player.poster = `${recording}.jpg`;
+  player.src = `${recording}.mp4${revision}`;
+  player.poster = `${recording}.jpg${revision}`;
   player.controls = true;
   player.preload = "none";
   player.playsInline = true;

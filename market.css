@@ -56,33 +56,6 @@ button, a { outline-offset: 3px; }
 }
 .sc-skill-icon svg { width: 24px; height: 24px; stroke-width: 1.7; }
 
-.web-sidebar {
-  position: fixed;
-  inset: 0 auto 0 0;
-  width: 216px;
-  padding: 20px 12px;
-  border-right: 1px solid var(--border);
-  background: #fbfcfe;
-}
-.web-brand { display: flex; align-items: center; gap: 8px; padding: 4px 6px 18px; }
-.web-brand img { display: block; flex: none; }
-.web-brand strong { display: block; font-size: 13px; white-space: nowrap; }
-.web-brand small { display: block; margin-top: 2px; color: var(--text-tertiary); font-size: 11px; }
-.web-nav-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-height: 36px;
-  padding: 7px 10px;
-  border-radius: var(--radius-control);
-  color: var(--primary);
-  background: var(--primary-soft);
-  font-size: 13px;
-  font-weight: 600;
-}
-.web-nav-item:hover { color: var(--primary-hover); }
-
-.web-workspace { margin-left: 216px; min-width: 0; }
 .web-topbar {
   position: sticky;
   z-index: 2;
@@ -99,7 +72,6 @@ button, a { outline-offset: 3px; }
 .web-page-label, .web-source { display: flex; align-items: center; gap: 10px; color: var(--text-secondary); font-size: 12px; }
 .web-page-label strong { padding-left: 10px; border-left: 1px solid var(--border); font-weight: 600; }
 .web-source time, .sc-card-date, .detail-meta time { font-variant-numeric: tabular-nums; white-space: nowrap; }
-.mobile-brand { display: none; }
 .icon-button {
   width: 34px;
   height: 34px;
@@ -178,21 +150,10 @@ body:has(dialog[open]) { overflow: hidden; }
 .example-table th { background: var(--surface-secondary); font-weight: 600; }
 .example-table td { border-top: 1px solid var(--border); }
 
-@media (max-width: 960px) {
-  .web-sidebar { width: 76px; padding-inline: 12px; }
-  .web-brand { justify-content: center; padding-inline: 0; }
-  .web-nav-item { justify-content: center; }
-  .web-brand span, .web-nav-item span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  .web-workspace { margin-left: 76px; }
-}
-
 @media (max-width: 700px) {
-  .web-sidebar { display: none; }
-  .web-workspace { margin-left: 0; }
   .web-topbar, .sc-marketplace { padding-inline: 16px; }
   .web-page-label, .web-source { gap: 6px; }
   .web-page-label strong { padding-left: 6px; }
-  .mobile-brand { display: block; }
   .sc-market-search { min-height: 42px; }
   .sc-market-search kbd { display: none; }
   .sc-card-detail { font-size: 13px; }

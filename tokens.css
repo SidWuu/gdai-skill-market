@@ -1,0 +1,48 @@
+:root {
+  color-scheme: light;
+  --shell-header-height: 52px;
+  --background: #f7f8fa;
+  --surface: #ffffff;
+  --surface-secondary: #f2f4f7;
+  --primary: #426fe5;
+  --primary-hover: #345ccc;
+  --primary-soft: #eef2fe;
+  --text-primary: #202939;
+  --text-secondary: #637083;
+  --text-tertiary: #68758a;
+  --border: #e7eaf0;
+  --success: #16866a;
+  --success-soft: #eaf6f0;
+  --warning: #936719;
+  --warning-soft: #fff6e5;
+  --danger: #c64444;
+  --danger-soft: #fdf0f0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --radius-control: 7px;
+  --radius-card: 11px;
+  --radius-dialog: 14px;
+  --blue: var(--primary);
+  --muted: var(--text-secondary);
+}
+
+/* Reserved theme tokens. The initial product review uses the light theme. */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #171a20;
+  --surface: #20242c;
+  --surface-secondary: #292e38;
+  --text-primary: #edf0f6;
+  --text-secondary: #b1bac9;
+  --text-tertiary: #8d98aa;
+  --border: #343b49;
+  --primary-soft: #293455;
+  --success-soft: #213c33;
+  --warning-soft: #443820;
+  --danger-soft: #462a2e;
+}

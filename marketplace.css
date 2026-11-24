@@ -186,6 +186,9 @@
   flex-wrap: wrap;
   gap: 6px;
 }
+.sc-marketplace > .sc-category-list {
+  margin: 12px 0 8px;
+}
 .sc-category-list button {
   padding: 5px 10px;
   font-size: 11px;
@@ -200,22 +203,6 @@
   color: var(--text-primary);
   box-shadow: 0 0 0 1px var(--border);
   font-weight: 550;
-}
-.sc-status-filter {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--text-tertiary);
-  font-size: 11px;
-  flex-shrink: 0;
-}
-.sc-status-filter select {
-  border: 0;
-  background: transparent;
-  font-size: 11px;
-  color: var(--text-secondary);
-  max-width: 130px;
-  padding: 4px 20px 4px 4px;
 }
 .sc-result-heading {
   display: flex;
@@ -327,6 +314,9 @@
   font-size: 10px;
   color: var(--text-secondary);
   overflow-wrap: anywhere;
+}
+.sc-card-body > .sc-card-version {
+  margin-bottom: 6px;
 }
 .sc-card-source {
   display: flex;
